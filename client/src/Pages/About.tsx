@@ -6,7 +6,7 @@ type AboutProps = {};
 
 const Home: FC<AboutProps> = (props) => {
   return (
-    <div className='flex justify-content-center item-center'>
+    <div className='flex justify-center items-center w-full h-full'>
         <div className='overflow-x-auto'>
             <Table className="rounded-box">
                 <Table.Head>
