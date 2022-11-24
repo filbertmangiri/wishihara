@@ -1,13 +1,13 @@
 import { FC, ReactNode, useState } from 'react';
 import { Drawer } from 'react-daisyui';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Navbar from './Components/Navbar';
+import Sidebar from './Components/Sidebar';
+import About from './Pages/About';
 import Home from './Pages/Home';
+import NotFound from './Pages/NotFound';
 
-type AppProps = {
-  children: ReactNode;
-};
-
-const App: FC<AppProps> = (props) => {
+const App = () => {
   const [visible, setVisible] = useState(false);
 
   const toggleVisible = () => {
@@ -19,7 +19,14 @@ const App: FC<AppProps> = (props) => {
       <div>
         <Navbar toggleVisible={toggleVisible} />
 
-        <main className="container py-6">{props.children}</main>
+        <main className="container py-6">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Navigate to="/" replace />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
       </div>
 
       {/* Breakpoints Indicator */}

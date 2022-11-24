@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tabler/icons": "^1.113.0",
     "daisyui": "^2.42.0",
     "react": "^18.2.0",
     "react-daisyui": "^2.4.6",
