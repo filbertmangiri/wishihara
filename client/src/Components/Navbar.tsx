@@ -4,12 +4,13 @@ import { IconMenu2 } from '@tabler/icons';
 import { NavLink } from 'react-router-dom';
 
 type NavbarProps = {
+  className?: string;
   toggleVisible: () => void;
 };
 
 const NavbarLayout: FC<NavbarProps> = (props) => {
   return (
-    <Navbar className="container">
+    <Navbar className={`${props.className} container`}>
       <Navbar.Start>
         <Button color="ghost" shape="circle" tabIndex={0} onClick={props.toggleVisible}>
           <IconMenu2 />

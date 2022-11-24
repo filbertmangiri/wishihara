@@ -1,9 +1,11 @@
 import { IconHome, IconInfoSquare } from '@tabler/icons';
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { Menu } from 'react-daisyui';
-import { NavLink } from 'react-router-dom';
+import CustomNavLink from './CustomLink';
 
-type SidebarProps = {};
+type SidebarProps = {
+  setVisible: Dispatch<SetStateAction<boolean>>;
+};
 
 const SidebarLayout: FC<SidebarProps> = (props) => {
   return (
@@ -12,17 +14,17 @@ const SidebarLayout: FC<SidebarProps> = (props) => {
         <h1 className="mb-10 text-center">Wishihara</h1>
 
         <Menu.Item>
-          <NavLink to="/">
+          <CustomNavLink to="/" setVisible={props.setVisible}>
             <IconHome />
             Beranda
-          </NavLink>
+          </CustomNavLink>
         </Menu.Item>
 
         <Menu.Item>
-          <NavLink to="/about">
+          <CustomNavLink to="/about" setVisible={props.setVisible}>
             <IconInfoSquare />
             Tentang Kami
-          </NavLink>
+          </CustomNavLink>
         </Menu.Item>
       </Menu>
     </aside>
