@@ -103,12 +103,12 @@ const Home: FC<AboutProps> = (props) => {
                         src="http://daisyui.com/tailwind-css-component-profile-2@56w.png"
                     />
                     <div>
-                        <div className="font-bold">Timothy</div>
+                        <div className="font-bold">Timothy Gracie Hasudungan Wijaya</div>
                         <div className="text-sm opacity-50">Timothy</div>
                     </div>
                     </div>
                     <div>
-                    000 000 000000
+                    000 000 45042
                     <br />
                     </div>
                     <Button color="ghost" size="xs">
