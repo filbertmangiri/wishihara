@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Badge, Button, Card, Checkbox, Mask, Table } from 'react-daisyui';
-
+import hansen from '../assets/images/hansen_profile.jpg';
 
 type AboutProps = {};
 
@@ -18,8 +18,9 @@ const Home: FC<AboutProps> = (props) => {
                 <Table.Body>
                 <Table.Row>
                     <div className="flex items-center space-x-3 truncate">
-                    <Mask
+                    <Mask className="w-14"
                         variant="squircle"
+                        src= {hansen}
                         
                     />
                     <div>
@@ -103,12 +104,12 @@ const Home: FC<AboutProps> = (props) => {
                         src="http://daisyui.com/tailwind-css-component-profile-2@56w.png"
                     />
                     <div>
-                        <div className="font-bold">Timothy Gracie Hasudungan Wijaya</div>
+                        <div className="font-bold">Timothy</div>
                         <div className="text-sm opacity-50">Timothy</div>
                     </div>
                     </div>
                     <div>
-                    000 000 45042
+                    000 000 000000
                     <br />
                     </div>
                     <Button color="ghost" size="xs">

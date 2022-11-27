@@ -25,3 +25,5 @@ const ishihara = [
     }
 
 ]
+
+export default ishihara;
