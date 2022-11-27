@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
 
 type ResultProps = {
+  questionNumber: number;
   correctAnswers: number;
 };
 
 const Result: FC<ResultProps> = (props) => {
   return (
     <div>
-      {props.correctAnswers ? (
+      {props.questionNumber ? (
         <div>
           <span>RESULT : {props.correctAnswers}</span>
         </div>

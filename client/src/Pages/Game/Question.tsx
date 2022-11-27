@@ -6,10 +6,11 @@ import ishihara from '../../data/ishihara-desc';
 type QuestionProps = {
   correctAnswers: number;
   setCorrectAnswers: Dispatch<SetStateAction<number>>;
+  questionNumber: number;
+  setQuestionNumber: Dispatch<SetStateAction<number>>;
 };
 
 const Question: FC<QuestionProps> = (props) => {
-  const [questionNumber, setQuestionNumber] = useState(1);
   const [answer, setAnswer] = useState<number | string>('');
   const [alertOpen, setAlertOpen] = useState(false);
 
@@ -21,29 +22,29 @@ const Question: FC<QuestionProps> = (props) => {
     }
 
     const data = ishihara.find((obj) => {
-      return obj.id === questionNumber;
+      return obj.id === props.questionNumber;
     });
 
     if (answer == data?.answer) {
       props.setCorrectAnswers(props.correctAnswers + 1);
     }
 
-    setQuestionNumber(questionNumber + 1);
+    props.setQuestionNumber(props.questionNumber + 1);
 
     setAnswer('');
   };
 
   useEffect(() => {
-    if (questionNumber >= 14) {
+    if (props.questionNumber >= 14) {
       navigate('/result');
 
       return;
     }
-  }, [questionNumber]);
+  }, [props.questionNumber]);
 
   return (
     <div>
-      <img src={`/images/ishihara/${questionNumber}.png`} alt={`Question number ${questionNumber}`} />
+      <img src={`/images/ishihara/${props.questionNumber}.png`} alt={`Question number ${props.questionNumber}`} />
 
       <div className="form-control w-full max-w-xs">
         <label className="label">
@@ -57,7 +58,7 @@ const Question: FC<QuestionProps> = (props) => {
         Lanjut
       </Button>
 
-      <div>question: {questionNumber}</div>
+      <div>question: {props.questionNumber}</div>
       <div>correct: {props.correctAnswers}</div>
 
       <Modal open={alertOpen} onClickBackdrop={() => setAlertOpen(false)}>

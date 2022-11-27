@@ -16,6 +16,7 @@ const App = () => {
     setVisible(!visible);
   };
 
+  const [questionNumber, setQuestionNumber] = useState(1);
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
   return (
@@ -28,8 +29,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
-            <Route path="/question" element={<Question correctAnswers={correctAnswers} setCorrectAnswers={setCorrectAnswers} />} />
-            <Route path="/result" element={<Result correctAnswers={correctAnswers} />} />
+            <Route path="/question" element={<Question questionNumber={questionNumber} setQuestionNumber={setQuestionNumber} correctAnswers={correctAnswers} setCorrectAnswers={setCorrectAnswers} />} />
+            <Route path="/result" element={<Result questionNumber={questionNumber} correctAnswers={correctAnswers} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
