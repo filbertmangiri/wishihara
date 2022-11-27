@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Sidebar from './Components/Sidebar';
 import About from './Pages/About';
+import Question from './Pages/Game/Question';
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
+            <Route path="/question" element={<Question />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
