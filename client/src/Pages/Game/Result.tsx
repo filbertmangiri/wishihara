@@ -14,7 +14,7 @@ const Result: FC<ResultProps> = (props) => {
         </div>
       ) : (
         <div>
-          <span>BELOM NGERJAIN BANG</span>
+          <span>Silakan menjawab test nya terlebih dahulu</span>
         </div>
       )}
     </div>

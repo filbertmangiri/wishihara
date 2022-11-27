@@ -83,12 +83,7 @@ const ishihara = [
     id: 17,
     img: 'ishihara/17.png',
     answer: '73',
-  },
-  {
-    id: 18,
-    img: 'ishihara/18.png',
-    answer: '',
-  },
+  }
 ];
 
 export default ishihara;

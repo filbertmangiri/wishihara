@@ -35,7 +35,7 @@ const Question: FC<QuestionProps> = (props) => {
   };
 
   useEffect(() => {
-    if (props.questionNumber >= 14) {
+    if (props.questionNumber >= 17) {
       navigate('/result');
 
       return;
@@ -43,20 +43,21 @@ const Question: FC<QuestionProps> = (props) => {
   }, [props.questionNumber]);
 
   return (
-    <div>
-      <img src={`/images/ishihara/${props.questionNumber}.png`} alt={`Question number ${props.questionNumber}`} />
+    <div className="flex-items h-full w-full items-center justify-center">
+      <img className="flex-items flex w-60 items-center justify-center" src={`/images/ishihara/${props.questionNumber}.png`} alt={`Question number ${props.questionNumber}`} />
 
-      <div className="form-control w-full max-w-xs">
-        <label className="label">
+      <div className="flex-items form-control flex w-full max-w-xs items-center justify-center">
+        <label className="flex-items label flex items-center justify-center">
           <span className="label-text">Tuliskan angka yang terlihat</span>
         </label>
 
         <Input type="number" onChange={(event) => setAnswer(event.target.value)} value={answer} autoFocus />
       </div>
-
-      <Button variant="outline" onClick={answerCheck}>
-        Lanjut
-      </Button>
+      <div className="flex-items flex items-center justify-center">
+        <Button variant="outline" onClick={answerCheck}>
+          Lanjut
+        </Button>
+      </div>
 
       <div>question: {props.questionNumber}</div>
       <div>correct: {props.correctAnswers}</div>
@@ -64,7 +65,7 @@ const Question: FC<QuestionProps> = (props) => {
       <Modal open={alertOpen} onClickBackdrop={() => setAlertOpen(false)}>
         <Modal.Header className="font-bold">ERROR</Modal.Header>
 
-        <Modal.Body>Jawab dulu kali soalnya bang</Modal.Body>
+        <Modal.Body>Silakan isi terlebih dahulu</Modal.Body>
       </Modal>
     </div>
   );
