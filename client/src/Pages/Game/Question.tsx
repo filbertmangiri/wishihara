@@ -1,14 +1,19 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
 import { Button, Input, Modal } from 'react-daisyui';
+import { useNavigate } from 'react-router-dom';
 import ishihara from '../../data/ishihara-desc';
 
-type QuestionProps = {};
+type QuestionProps = {
+  correctAnswers: number;
+  setCorrectAnswers: Dispatch<SetStateAction<number>>;
+};
 
 const Question: FC<QuestionProps> = (props) => {
-  const [correctAnswers, setCorrectAnswers] = useState(0);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [answer, setAnswer] = useState<number | string>('');
   const [alertOpen, setAlertOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const answerCheck = () => {
     if (!answer) {
@@ -20,13 +25,21 @@ const Question: FC<QuestionProps> = (props) => {
     });
 
     if (answer == data?.answer) {
-      setCorrectAnswers(correctAnswers + 1);
+      props.setCorrectAnswers(props.correctAnswers + 1);
     }
 
     setQuestionNumber(questionNumber + 1);
 
     setAnswer('');
   };
+
+  useEffect(() => {
+    if (questionNumber >= 14) {
+      navigate('/result');
+
+      return;
+    }
+  }, [questionNumber]);
 
   return (
     <div>
@@ -37,7 +50,7 @@ const Question: FC<QuestionProps> = (props) => {
           <span className="label-text">Tuliskan angka yang terlihat</span>
         </label>
 
-        <Input type="number" onChange={(event) => setAnswer(event.target.value)} value={answer} />
+        <Input type="number" onChange={(event) => setAnswer(event.target.value)} value={answer} autoFocus />
       </div>
 
       <Button variant="outline" onClick={answerCheck}>
@@ -45,7 +58,7 @@ const Question: FC<QuestionProps> = (props) => {
       </Button>
 
       <div>question: {questionNumber}</div>
-      <div>correct: {correctAnswers}</div>
+      <div>correct: {props.correctAnswers}</div>
 
       <Modal open={alertOpen} onClickBackdrop={() => setAlertOpen(false)}>
         <Modal.Header className="font-bold">ERROR</Modal.Header>

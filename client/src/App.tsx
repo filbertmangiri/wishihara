@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar';
 import Sidebar from './Components/Sidebar';
 import About from './Pages/About';
 import Question from './Pages/Game/Question';
+import Result from './Pages/Game/Result';
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 
@@ -14,6 +15,8 @@ const App = () => {
   const toggleVisible = () => {
     setVisible(!visible);
   };
+
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
   return (
     <Drawer side={<Sidebar setVisible={setVisible} />} open={visible} onClickOverlay={toggleVisible} className="font-sans">
@@ -25,7 +28,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
-            <Route path="/question" element={<Question />} />
+            <Route path="/question" element={<Question correctAnswers={correctAnswers} setCorrectAnswers={setCorrectAnswers} />} />
+            <Route path="/result" element={<Result correctAnswers={correctAnswers} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
