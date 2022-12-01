@@ -19,6 +19,8 @@ const App = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
+  const [answers, setAnswers] = useState<Array<Answer>>([]);
+
   return (
     <Drawer side={<Sidebar setVisible={setVisible} />} open={visible} onClickOverlay={toggleVisible} className="font-sans">
       <div className="flex h-screen flex-col">
@@ -26,11 +28,11 @@ const App = () => {
 
         <main className="container flex flex-grow">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home questionNumber={questionNumber} setQuestionNumber={setQuestionNumber} setCorrectAnswers={setCorrectAnswers} />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
-            <Route path="/question" element={<Question questionNumber={questionNumber} setQuestionNumber={setQuestionNumber} correctAnswers={correctAnswers} setCorrectAnswers={setCorrectAnswers} />} />
-            <Route path="/result" element={<Result questionNumber={questionNumber} correctAnswers={correctAnswers} />} />
+            <Route path="/question" element={<Question questionNumber={questionNumber} setQuestionNumber={setQuestionNumber} correctAnswers={correctAnswers} setCorrectAnswers={setCorrectAnswers} answers={answers} setAnswers={setAnswers} />} />
+            <Route path="/result" element={<Result questionNumber={questionNumber} correctAnswers={correctAnswers} answers={answers} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -8,6 +8,8 @@ type QuestionProps = {
   setCorrectAnswers: Dispatch<SetStateAction<number>>;
   questionNumber: number;
   setQuestionNumber: Dispatch<SetStateAction<number>>;
+  answers: Answer[];
+  setAnswers: Dispatch<SetStateAction<Answer[]>>;
 };
 
 const Question: FC<QuestionProps> = (props) => {
@@ -27,6 +29,15 @@ const Question: FC<QuestionProps> = (props) => {
       return obj.id === props.questionNumber;
     });
 
+    props.setAnswers([
+      ...props.answers,
+      {
+        number: props.questionNumber,
+        input: answer,
+        correct: data?.answer,
+      },
+    ]);
+
     if (answer == data?.answer) {
       props.setCorrectAnswers(props.correctAnswers + 1);
     }
@@ -39,7 +50,6 @@ const Question: FC<QuestionProps> = (props) => {
   useEffect(() => {
     if (props.questionNumber > 17) {
       navigate('/result');
-
       return;
     }
   }, [props.questionNumber]);

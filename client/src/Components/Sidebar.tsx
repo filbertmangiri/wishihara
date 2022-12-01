@@ -1,4 +1,4 @@
-import { IconHome, IconInfoSquare } from '@tabler/icons';
+import { IconHome, IconInfoSquare, IconReportAnalytics } from '@tabler/icons';
 import { Dispatch, FC, SetStateAction } from 'react';
 import { Menu } from 'react-daisyui';
 import CustomNavLink from './CustomLink';
@@ -24,6 +24,13 @@ const SidebarLayout: FC<SidebarProps> = (props) => {
           <CustomNavLink to="/about" setVisible={props.setVisible}>
             <IconInfoSquare />
             Tentang Kami
+          </CustomNavLink>
+        </Menu.Item>
+
+        <Menu.Item>
+          <CustomNavLink to="/result" setVisible={props.setVisible}>
+            <IconReportAnalytics />
+            Hasil Tes
           </CustomNavLink>
         </Menu.Item>
       </Menu>

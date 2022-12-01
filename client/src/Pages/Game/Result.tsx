@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
+import { Table } from 'react-daisyui';
+import { Link } from 'react-router-dom';
 
 type ResultProps = {
   questionNumber: number;
   correctAnswers: number;
+  answers: Answer[];
 };
 
 const Result: FC<ResultProps> = (props) => {
@@ -32,14 +35,38 @@ const Result: FC<ResultProps> = (props) => {
 
   return (
     <div>
-      {props.questionNumber ? (
+      {props.questionNumber > 1 ? (
         <div>
           <h3>Percentage : {result.percentage.toFixed(2)}</h3>
           <h3>Diagnosis : {result.diagnosis}</h3>
+
+          <div className="overflow-x-auto">
+            <Table>
+              <Table.Head>
+                <span>Nomor</span>
+                <span>Input</span>
+                <span>Jawaban</span>
+              </Table.Head>
+
+              <Table.Body>
+                {props.answers.map((answer) => (
+                  <Table.Row key={answer.number} hover>
+                    <span>{answer.number}</span>
+                    <span>{answer.input}</span>
+                    <span>{answer.correct}</span>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table>
+          </div>
         </div>
       ) : (
-        <div>
+        <div className="flex flex-col gap-y-5">
           <span>Silakan menjawab test nya terlebih dahulu</span>
+
+          <Link to="/question" className="btn-outline btn">
+            Mulai Tes Sekarang
+          </Link>
         </div>
       )}
     </div>
