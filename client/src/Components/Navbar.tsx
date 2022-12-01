@@ -25,13 +25,7 @@ const NavbarLayout: FC<NavbarProps> = (props) => {
         </NavLink>
       </Navbar.Center>
 
-      <Navbar.End>
-        <Button color="ghost" className="avatar" shape="circle">
-          <div className="w-10 rounded-full">
-            <img src="https://api.lorem.space/image/face?hash=33791" alt="Foto profil saya" />
-          </div>
-        </Button>
-      </Navbar.End>
+      <Navbar.End />
     </Navbar>
   );
 };

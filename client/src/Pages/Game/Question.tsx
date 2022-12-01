@@ -1,5 +1,5 @@
-import React, { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
-import { Button, Input, Modal } from 'react-daisyui';
+import React, { Dispatch, FC, FormEvent, SetStateAction, useEffect, useState } from 'react';
+import { Button, Form, Input, Modal } from 'react-daisyui';
 import { useNavigate } from 'react-router-dom';
 import ishihara from '../../data/ishihara-desc';
 
@@ -16,7 +16,9 @@ const Question: FC<QuestionProps> = (props) => {
 
   const navigate = useNavigate();
 
-  const answerCheck = () => {
+  const answerCheck = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     if (!answer) {
       return setAlertOpen(true);
     }
@@ -35,7 +37,7 @@ const Question: FC<QuestionProps> = (props) => {
   };
 
   useEffect(() => {
-    if (props.questionNumber >= 17) {
+    if (props.questionNumber > 17) {
       navigate('/result');
 
       return;
@@ -43,31 +45,33 @@ const Question: FC<QuestionProps> = (props) => {
   }, [props.questionNumber]);
 
   return (
-    <div className="flex-items h-full w-full items-center justify-center">
-      <img className="flex-items flex w-60 items-center justify-center" src={`/images/ishihara/${props.questionNumber}.png`} alt={`Question number ${props.questionNumber}`} />
+    <>
+      <Form onSubmit={answerCheck} className="flex w-full flex-col items-center justify-center gap-y-6">
+        <div className="avatar">
+          <div className="h-56 rounded">
+            <img src={`/images/ishihara/${props.questionNumber}.png`} alt={`Question number ${props.questionNumber}`} />
+          </div>
+        </div>
 
-      <div className="flex-items form-control flex w-full max-w-xs items-center justify-center">
-        <label className="flex-items label flex items-center justify-center">
-          <span className="label-text">Tuliskan angka yang terlihat</span>
-        </label>
+        <div>
+          <label className="label">
+            <span className="label-text">Tuliskan angka yang terlihat</span>
+          </label>
 
-        <Input type="number" onChange={(event) => setAnswer(event.target.value)} value={answer} autoFocus />
-      </div>
-      <div className="flex-items flex items-center justify-center">
-        <Button variant="outline" onClick={answerCheck}>
-          Lanjut
+          <Input type="number" onChange={(event) => setAnswer(event.target.value)} value={answer} autoFocus />
+        </div>
+
+        <Button type="submit" variant="outline">
+          Berikutnya
         </Button>
-      </div>
-
-      <div>question: {props.questionNumber}</div>
-      <div>correct: {props.correctAnswers}</div>
+      </Form>
 
       <Modal open={alertOpen} onClickBackdrop={() => setAlertOpen(false)}>
         <Modal.Header className="font-bold">ERROR</Modal.Header>
 
         <Modal.Body>Silakan isi terlebih dahulu</Modal.Body>
       </Modal>
-    </div>
+    </>
   );
 };
 

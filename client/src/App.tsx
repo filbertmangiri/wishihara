@@ -24,7 +24,7 @@ const App = () => {
       <div className="flex h-screen flex-col">
         <Navbar toggleVisible={toggleVisible} />
 
-        <main className="container flex flex-grow py-6">
+        <main className="container flex flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
