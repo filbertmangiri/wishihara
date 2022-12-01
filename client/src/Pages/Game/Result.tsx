@@ -1,3 +1,4 @@
+import { IconCircleCheck, IconCircleX } from '@tabler/icons';
 import React, { FC } from 'react';
 import { Progress, Table } from 'react-daisyui';
 import { Link } from 'react-router-dom';
@@ -34,7 +35,7 @@ const Result: FC<ResultProps> = (props) => {
   }
 
   return (
-    <div>
+    <div className="mt-32 flex w-full justify-center">
       {props.questionNumber > 1 ? (
         <div>
           <h3>Persentase Tidak Buta Warna : {result.percentage.toFixed(2)}%</h3>
@@ -42,23 +43,26 @@ const Result: FC<ResultProps> = (props) => {
           <Progress className="w-56" value={result.percentage} />
 
           <div className="overflow-x-auto">
-            <Table className="table-compact">
-              <Table.Head>
-                <span>Nomor</span>
-                <span>Input</span>
-                <span>Jawaban</span>
-              </Table.Head>
-
-              <Table.Body>
+            <table className="table-compact table">
+              <thead>
+                <tr>
+                  <th>Nomor</th>
+                  <th>Input</th>
+                  <th>Jawaban</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
                 {props.answers.map((answer) => (
-                  <Table.Row key={answer.number} hover>
-                    <span>{answer.number}</span>
-                    <span>{answer.input}</span>
-                    <span>{answer.correct}</span>
-                  </Table.Row>
+                  <tr key={answer.number} className="hover">
+                    <td className="text-center">{answer.number}</td>
+                    <td className="text-center">{answer.input}</td>
+                    <td className="text-center">{answer.correct}</td>
+                    <td className="text-center">{answer.input == answer.correct ? <IconCircleCheck color="green" /> : <IconCircleX color="red" />}</td>
+                  </tr>
                 ))}
-              </Table.Body>
-            </Table>
+              </tbody>
+            </table>
           </div>
         </div>
       ) : (

@@ -39,7 +39,7 @@ const App = () => {
       </div>
 
       {/* Breakpoints Indicator */}
-      <div
+      {/* <div
         className="fixed bottom-[5%] left-1/2 z-[10000] rounded-3xl font-mono"
         style={{
           background: 'rgba(247, 201, 241, 0.4)',
@@ -53,7 +53,7 @@ const App = () => {
         <div className="hidden lg:block xl:hidden">Large (lg)</div>
         <div className="hidden xl:block 2xl:hidden">X-Large (xl)</div>
         <div className="hidden 2xl:block">2X-Large (xxl)</div>
-      </div>
+      </div> */}
     </Drawer>
   );
 };
