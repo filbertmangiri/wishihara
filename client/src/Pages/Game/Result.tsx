@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Table } from 'react-daisyui';
+import { Progress, Table } from 'react-daisyui';
 import { Link } from 'react-router-dom';
 
 type ResultProps = {
@@ -11,37 +11,38 @@ type ResultProps = {
 const Result: FC<ResultProps> = (props) => {
   const result: {
     percentage: number;
-    diagnosis: 'normal' | 'mild' | 'moderate' | 'severe';
+    diagnosis: 'Menurut tes ini, Anda tidak memiliki buta warna merah-hijau (red-green colorblind), yang artinya Anda memiliki penglihatan warna normal.' | 'Menurut tes ini, Anda memiliki buta warna merah-hijau ringan (mild red-green colorblind), yang artinya Anda memiliki defisiensi penglihatan warna ringan.' | 'Menurut tes ini, Anda memiliki buta warna merah-hijau sedang (moderate red-green colorblind), yang artinya Anda memiliki defisiensi penglihatan warna sedang.' | 'Menurut tes ini, Anda memiliki buta warna merah-hijau yang parah (severe red-green colorblind), yang artinya Anda memiliki defisiensi penglihatan warna yang parah.';
   } = {
     percentage: 0,
-    diagnosis: 'normal',
+    diagnosis: 'Menurut tes ini, Anda tidak memiliki buta warna merah-hijau (red-green colorblind), yang artinya Anda memiliki penglihatan warna normal.',
   };
 
   const wrongAnswers = 17 - props.correctAnswers;
 
   if (wrongAnswers <= 3) {
     result.percentage = (props.correctAnswers / 17) * 100;
-    result.diagnosis = 'normal';
+    result.diagnosis = 'Menurut tes ini, Anda tidak memiliki buta warna merah-hijau (red-green colorblind), yang artinya Anda memiliki penglihatan warna normal.';
   } else if (wrongAnswers <= 6) {
     result.percentage = (props.correctAnswers / 17) * 100;
-    result.diagnosis = 'mild';
+    result.diagnosis = 'Menurut tes ini, Anda memiliki buta warna merah-hijau ringan (mild red-green colorblind), yang artinya Anda memiliki defisiensi penglihatan warna ringan.';
   } else if (wrongAnswers <= 12) {
     result.percentage = (props.correctAnswers / 17) * 100;
-    result.diagnosis = 'moderate';
+    result.diagnosis = 'Menurut tes ini, Anda memiliki buta warna merah-hijau sedang (moderate red-green colorblind), yang artinya Anda memiliki defisiensi penglihatan warna sedang.';
   } else {
     result.percentage = (props.correctAnswers / 17) * 100;
-    result.diagnosis = 'severe';
+    result.diagnosis = 'Menurut tes ini, Anda memiliki buta warna merah-hijau yang parah (severe red-green colorblind), yang artinya Anda memiliki defisiensi penglihatan warna yang parah.';
   }
 
   return (
     <div>
       {props.questionNumber > 1 ? (
         <div>
-          <h3>Percentage : {result.percentage.toFixed(2)}</h3>
+          <h3>Persentase Tidak Buta Warna : {result.percentage.toFixed(2)}%</h3>
           <h3>Diagnosis : {result.diagnosis}</h3>
+          <Progress className="w-56" value={result.percentage} />
 
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="table-compact">
               <Table.Head>
                 <span>Nomor</span>
                 <span>Input</span>
