@@ -40,7 +40,7 @@ const Result: FC<ResultProps> = (props) => {
         <div>
           <h3>Persentase Tidak Buta Warna : {result.percentage.toFixed(2)}%</h3>
           <h3>Diagnosis : {result.diagnosis}</h3>
-          <Progress className="w-56" value={result.percentage} />
+          <Progress color="success" className="w-64" value={result.percentage} max="100"/>
 
           <div className="overflow-x-auto">
             <table className="table-compact table">
