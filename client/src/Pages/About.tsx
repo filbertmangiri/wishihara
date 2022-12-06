@@ -16,7 +16,6 @@ const Home: FC<AboutProps> = (props) => {
                 <Table.Head>
                 <span>Name</span>
                 <span>NIM</span>
-                <span />
                 </Table.Head>
 
                 <Table.Body>
@@ -36,9 +35,6 @@ const Home: FC<AboutProps> = (props) => {
                     000 000 43288
                     <br />
                     </div>
-                    <Button color="ghost" size="xs">
-                    details
-                    </Button>
                 </Table.Row>
 
                 <Table.Row>
@@ -56,9 +52,6 @@ const Home: FC<AboutProps> = (props) => {
                     000 000 50612
                     <br />
                     </div>
-                    <Button color="ghost" size="xs">
-                    details
-                    </Button>
                 </Table.Row>
 
                 <Table.Row>
@@ -76,9 +69,6 @@ const Home: FC<AboutProps> = (props) => {
                     000 000 45957
                     <br />
                     </div>
-                    <Button color="ghost" size="xs">
-                    details
-                    </Button>
                 </Table.Row>
 
                 <Table.Row>
@@ -96,9 +86,6 @@ const Home: FC<AboutProps> = (props) => {
                     000 000 50745
                     <br />
                     </div>
-                    <Button color="ghost" size="xs">
-                    details
-                    </Button>
                 </Table.Row>
 
                 <Table.Row>
@@ -116,16 +103,12 @@ const Home: FC<AboutProps> = (props) => {
                     000 000 45042
                     <br />
                     </div>
-                    <Button color="ghost" size="xs">
-                    details
-                    </Button>
                 </Table.Row>
                 </Table.Body>
 
                 <Table.Footer>
                 <span>Name</span>
                 <span>NIM</span>
-                <span>&nbsp;</span>
                 </Table.Footer>
             </Table>
         </div>
